@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2026. All rights reserved.
+ * 
+ * This code is proprietary and confidential.
+ * It is not to be used, distributed, or shared without express permission.
+ */
 package com.aviso.controller;
 
 import javafx.application.Platform;
