@@ -36,7 +36,7 @@ public class MainController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("About");
         alert.setHeaderText("Aviso V2");
-        alert.setContentText("Version 1.0.0\nA JavaFX Desktop Application");
+        alert.setContentText("Version 0.0.1\nA JavaFX Desktop Application");
         alert.showAndWait();
     }
 }

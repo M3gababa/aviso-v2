@@ -123,7 +123,7 @@ launch4j {
 
     // Windows .exe icon — must be a .ico file (not .png).
     // Place your icon at src/main/resources/icons/app.ico then uncomment:
-    // icon = "${projectDir}/src/main/resources/icons/app.ico"
+    icon = "${projectDir}/src/main/resources/icons/axience.ico"
 
     // JVM options forwarded to the application
     jvmOptions = ['-Dfile.encoding=UTF-8']

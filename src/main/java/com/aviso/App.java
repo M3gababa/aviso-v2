@@ -25,7 +25,7 @@ public class App extends Application {
 
     private static final String MAIN_VIEW      = "views/main.fxml";
     private static final String STYLESHEET     = "css/application.css";
-    private static final String WINDOW_ICON    = "images/app-icon.png";
+    private static final String WINDOW_ICON    = "images/axience_icon.png";
     private static final String APP_TITLE      = "Aviso V2";
     private static final double WINDOW_WIDTH   = 900;
     private static final double WINDOW_HEIGHT  = 600;
