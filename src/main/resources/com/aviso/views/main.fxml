@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.aviso.controller.MainController"
+            prefWidth="900" prefHeight="600">
+
+    <!-- ================================================================= -->
+    <!-- Menu bar                                                          -->
+    <!-- ================================================================= -->
+    <top>
+        <MenuBar>
+            <menus>
+                <Menu text="File">
+                    <items>
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Exit" onAction="#handleExit"/>
+                    </items>
+                </Menu>
+                <Menu text="Help">
+                    <items>
+                        <MenuItem text="About" onAction="#handleAbout"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+
+    <!-- ================================================================= -->
+    <!-- Main content area                                                 -->
+    <!-- ================================================================= -->
+    <center>
+        <VBox alignment="CENTER" spacing="20">
+            <padding>
+                <Insets top="40" right="40" bottom="40" left="40"/>
+            </padding>
+
+            <Label text="Welcome to Aviso V2"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+
+            <Label fx:id="statusLabel"
+                   text="Loading..."
+                   style="-fx-font-size: 14px; -fx-text-fill: #888888;"/>
+        </VBox>
+    </center>
+
+</BorderPane>

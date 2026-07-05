@@ -1,0 +1,134 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.gradleup.shadow' version '9.4.3'
+    id 'edu.sc.seis.launch4j' version '4.0.0'
+}
+
+group = 'com.aviso'
+version = '1.0.0-SNAPSHOT'
+
+// =============================================================================
+// Java Compilation Configuration
+// =============================================================================
+// This project is BUILT with JDK 26 but produces Java 8 bytecode so the
+// application can run on a JRE 8.
+//
+// We use sourceCompatibility / targetCompatibility (NOT --release 8) because
+// --release restricts the available API surface to the JDK's own definition
+// of the Java 8 standard library, which excludes JavaFX.  By using
+// source/targetCompatibility we produce Java 8 class files while allowing
+// the compiler to resolve JavaFX classes provided as compileOnly dependencies.
+//
+// IMPORTANT:  Because --release is not used, the compiler will NOT prevent
+// accidental use of Java 9+ standard-library APIs.  Be vigilant in code
+// reviews or add a static-analysis check (e.g. Animal Sniffer) if needed.
+// =============================================================================
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // =========================================================================
+    // JavaFX — available at compile time AND for `gradlew run` on JDK 26
+    // =========================================================================
+    // OpenJFX 21 jars provide the JavaFX API so we can compile and run
+    // during development on a modern JDK that no longer bundles JavaFX.
+    //
+    // These are declared as 'implementation' (not 'compileOnly') so that
+    // the `run` task has them on the classpath.  The shadowJar task is
+    // configured to EXCLUDE them because the target JRE 8 (Oracle JDK 8,
+    // Azul ZuluFX 8, BellSoft Liberica Full 8, etc.) already ships JavaFX.
+    //
+    // The classifier ':win' pulls the Windows-specific artifact that
+    // contains the actual class files + native libs.  Change to ':linux'
+    // or ':mac' if you develop on those platforms.
+    // =========================================================================
+    implementation 'org.openjfx:javafx-base:21:win'
+    implementation 'org.openjfx:javafx-controls:21:win'
+    implementation 'org.openjfx:javafx-fxml:21:win'
+    implementation 'org.openjfx:javafx-graphics:21:win'
+
+    // =========================================================================
+    // Runtime dependencies — add yours here.  They will be bundled into the
+    // shadow (fat) jar automatically.
+    //
+    // Example:
+    //   implementation 'com.google.code.gson:gson:2.11.0'
+    // =========================================================================
+}
+
+// =============================================================================
+// Application plugin
+// =============================================================================
+application {
+    mainClass = 'com.aviso.MainLauncher'
+}
+
+// =============================================================================
+// Compiler options
+// =============================================================================
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+// =============================================================================
+// Shadow JAR — merges all runtime dependencies into a single fat jar.
+// JavaFX (compileOnly) is intentionally excluded since the target JRE
+// already provides it.
+// =============================================================================
+shadowJar {
+    archiveBaseName.set('aviso-v2')
+    archiveClassifier.set('all')
+    archiveVersion.set(project.version.toString())
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    mergeServiceFiles()
+
+    // Exclude OpenJFX from the fat jar — the target JRE 8 provides JavaFX.
+    dependencies {
+        exclude(dependency('org.openjfx:.*'))
+    }
+
+    manifest {
+        attributes(
+            'Main-Class': application.mainClass.get()
+        )
+    }
+}
+
+// =============================================================================
+// Launch4j — wraps the fat jar into a native Windows .exe launcher.
+//
+// The generated .exe does NOT bundle a JRE; it searches for an installed
+// JRE 8 on the target machine.  To bundle a JRE instead, set
+// 'bundledJrePath' to the relative path of a JRE directory placed next
+// to the .exe (e.g. 'jre').
+// =============================================================================
+launch4j {
+    mainClassName = application.mainClass.get()
+    outfile = 'AvisoV2.exe'
+    jarTask = project.tasks.shadowJar
+
+    // 'gui' = windowed app (no console window).  Use 'console' for CLI apps.
+    headerType = 'gui'
+
+    // Restrict the JRE version the launcher will accept.
+    jreMinVersion = '1.8.0'
+    jreMaxVersion = '1.8.9_999'
+
+    // Windows .exe icon — must be a .ico file (not .png).
+    // Place your icon at src/main/resources/icons/app.ico then uncomment:
+    // icon = "${projectDir}/src/main/resources/icons/app.ico"
+
+    // JVM options forwarded to the application
+    jvmOptions = ['-Dfile.encoding=UTF-8']
+
+    // Heap sizes (in MB)
+    initialHeapSize = 256
+    maxHeapSize = 1024
+}

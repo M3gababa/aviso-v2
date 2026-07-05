@@ -1,0 +1,128 @@
+/* =============================================================================
+ * Aviso V2 — Global Application Stylesheet
+ * =============================================================================
+ * This stylesheet is loaded automatically by App.java and applies to all
+ * scenes in the application.
+ *
+ * JavaFX CSS reference:
+ *   https://openjfx.io/javadoc/21/javafx.graphics/javafx/scene/doc-files/cssref.html
+ * ============================================================================= */
+
+/* --------------------------------------------------------------------------- */
+/* Root & base theme                                                           */
+/* --------------------------------------------------------------------------- */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f4f5f7;
+
+    /* Custom colour palette — reference these anywhere with derive() / -fx-* */
+    -aviso-primary: #2c6fce;
+    -aviso-primary-light: #4a90e2;
+    -aviso-accent: #e8912d;
+    -aviso-text: #2e3440;
+    -aviso-text-muted: #7a8695;
+    -aviso-bg: #f4f5f7;
+    -aviso-bg-card: #ffffff;
+    -aviso-border: #d8dee4;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Labels                                                                      */
+/* --------------------------------------------------------------------------- */
+.label {
+    -fx-text-fill: -aviso-text;
+}
+
+.label.muted {
+    -fx-text-fill: -aviso-text-muted;
+}
+
+.label.heading {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.label.subheading {
+    -fx-font-size: 16px;
+    -fx-font-weight: normal;
+    -fx-text-fill: -aviso-text-muted;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Buttons                                                                     */
+/* --------------------------------------------------------------------------- */
+.button {
+    -fx-background-color: -aviso-primary;
+    -fx-text-fill: white;
+    -fx-padding: 8 20;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: -aviso-primary-light;
+}
+
+.button:pressed {
+    -fx-background-color: derive(-aviso-primary, -15%);
+}
+
+.button.secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: -aviso-primary;
+    -fx-border-color: -aviso-primary;
+    -fx-border-width: 1;
+}
+
+.button.secondary:hover {
+    -fx-background-color: derive(-aviso-primary, 90%);
+}
+
+/* --------------------------------------------------------------------------- */
+/* Menu bar                                                                    */
+/* --------------------------------------------------------------------------- */
+.menu-bar {
+    -fx-background-color: -aviso-bg-card;
+    -fx-border-color: transparent transparent -aviso-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Cards / panels                                                              */
+/* --------------------------------------------------------------------------- */
+.card {
+    -fx-background-color: -aviso-bg-card;
+    -fx-background-radius: 6;
+    -fx-border-color: -aviso-border;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+}
+
+/* --------------------------------------------------------------------------- */
+/* Text fields                                                                 */
+/* --------------------------------------------------------------------------- */
+.text-field, .text-area {
+    -fx-background-color: -aviso-bg-card;
+    -fx-border-color: -aviso-border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 6 10;
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: -aviso-primary;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Status bar (bottom)                                                         */
+/* --------------------------------------------------------------------------- */
+.status-bar {
+    -fx-background-color: -aviso-bg-card;
+    -fx-border-color: -aviso-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 4 12;
+}
