@@ -32,7 +32,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(MAIN_VIEW));
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("com.aviso.i18n.messages");
+        Parent root = FXMLLoader.load(getClass().getResource(MAIN_VIEW), bundle);
 
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 

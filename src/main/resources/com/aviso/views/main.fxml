@@ -19,15 +19,15 @@
     <top>
         <MenuBar>
             <menus>
-                <Menu text="File">
+                <Menu text="%menu.file">
                     <items>
                         <SeparatorMenuItem/>
-                        <MenuItem text="Exit" onAction="#handleExit"/>
+                        <MenuItem text="%menu.file.exit" onAction="#handleExit"/>
                     </items>
                 </Menu>
-                <Menu text="Help">
+                <Menu text="%menu.help">
                     <items>
-                        <MenuItem text="About" onAction="#handleAbout"/>
+                        <MenuItem text="%menu.help.about" onAction="#handleAbout"/>
                     </items>
                 </Menu>
             </menus>
@@ -43,11 +43,11 @@
                 <Insets top="40" right="40" bottom="40" left="40"/>
             </padding>
 
-            <Label text="Welcome to Aviso V2"
+            <Label text="%main.welcome"
                    style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
 
             <Label fx:id="statusLabel"
-                   text="Loading..."
+                   text="%main.status.ready"
                    style="-fx-font-size: 14px; -fx-text-fill: #888888;"/>
         </VBox>
     </center>

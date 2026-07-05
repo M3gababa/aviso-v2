@@ -17,9 +17,14 @@ public class MainController implements Initializable {
     @FXML
     private Label statusLabel;
 
+    private ResourceBundle bundle;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        statusLabel.setText("Application ready.");
+        this.bundle = resources;
+        if (bundle != null && bundle.containsKey("main.status.ready")) {
+            statusLabel.setText(bundle.getString("main.status.ready"));
+        }
     }
 
     // =========================================================================
@@ -34,9 +39,15 @@ public class MainController implements Initializable {
     @FXML
     private void handleAbout() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("About");
-        alert.setHeaderText("Aviso V2");
-        alert.setContentText("Version 0.0.1\nA JavaFX Desktop Application");
+        if (bundle != null) {
+            alert.setTitle(bundle.getString("about.title"));
+            alert.setHeaderText(bundle.getString("about.header"));
+            alert.setContentText(java.text.MessageFormat.format(bundle.getString("about.content"), "1.0.0"));
+        } else {
+            alert.setTitle("About");
+            alert.setHeaderText("Aviso V2");
+            alert.setContentText("Version 1.0.0\nA JavaFX Desktop Application");
+        }
         alert.showAndWait();
     }
 }
