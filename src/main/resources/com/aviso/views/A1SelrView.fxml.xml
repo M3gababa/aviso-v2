@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.aviso.controller.A1SelrController">
+
+    <top>
+        <Label text="Cdes : Critères de sélection"
+               styleClass="title"/>
+    </top>
+
+    <center>
+
+        <GridPane hgap="10" vgap="8">
+
+            <Label text="Territoire"/>
+            <ComboBox fx:id="comboTerritoire"
+                      GridPane.columnIndex="1"/>
+
+            <Label text="Type Commande"
+                   GridPane.rowIndex="1"/>
+
+            <ComboBox fx:id="comboTypeCommande"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="1"/>
+
+            <Label text="Laboratoire"
+                   GridPane.rowIndex="2"/>
+
+            <ComboBox fx:id="comboLaboratoire"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="2"/>
+
+            <Label text="Magasin"
+                   GridPane.rowIndex="3"/>
+
+            <ComboBox fx:id="comboMagasin"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="3"/>
+
+            <Label text="Article"
+                   GridPane.rowIndex="4"/>
+
+            <ComboBox fx:id="comboArticle"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="4"/>
+
+            <Label text="Date Livraison du"
+                   GridPane.rowIndex="5"/>
+
+            <HBox spacing="5"
+                  GridPane.columnIndex="1"
+                  GridPane.rowIndex="5">
+
+                <ComboBox fx:id="comboDateDebutOperateur"/>
+                <DatePicker fx:id="dateDebut"/>
+
+            </HBox>
+
+            <Label text="Souhaitée au"
+                   GridPane.rowIndex="6"/>
+
+            <HBox spacing="5"
+                  GridPane.columnIndex="1"
+                  GridPane.rowIndex="6">
+
+                <ComboBox fx:id="comboDateFinOperateur"/>
+                <DatePicker fx:id="dateFin"/>
+
+            </HBox>
+
+            <Label text="Type client"
+                   GridPane.rowIndex="7"/>
+
+            <ComboBox fx:id="comboTypeClient"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="7"/>
+
+            <Label text="Code client"
+                   GridPane.rowIndex="8"/>
+
+            <TextField fx:id="client"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="8"/>
+
+            <Label text="Nom"
+                   GridPane.rowIndex="9"/>
+
+            <HBox spacing="5"
+                  GridPane.columnIndex="1"
+                  GridPane.rowIndex="9">
+
+                <ComboBox fx:id="comboNomOperateur"/>
+                <TextField fx:id="nom"/>
+
+            </HBox>
+
+            <Label text="Nom (suite)"
+                   GridPane.rowIndex="10"/>
+
+            <HBox spacing="5"
+                  GridPane.columnIndex="1"
+                  GridPane.rowIndex="10">
+
+                <ComboBox fx:id="comboNom2Operateur"/>
+                <TextField fx:id="nom2"/>
+
+            </HBox>
+
+            <Label text="Code postal"
+                   GridPane.rowIndex="11"/>
+
+            <TextField fx:id="codePostal"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="11"/>
+
+            <Label text="Ville"
+                   GridPane.rowIndex="12"/>
+
+            <HBox spacing="5"
+                  GridPane.columnIndex="1"
+                  GridPane.rowIndex="12">
+
+                <ComboBox fx:id="comboVilleOperateur"/>
+                <TextField fx:id="ville"/>
+
+            </HBox>
+
+            <Label text="Pays"
+                   GridPane.rowIndex="13"/>
+
+            <ComboBox fx:id="comboPays"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="13"/>
+
+        </GridPane>
+
+    </center>
+
+    <bottom>
+
+        <HBox spacing="10">
+
+            <Button text="Recherche (F5)"
+                    onAction="#rechercher"/>
+
+            <Button text="Réinitialisation"
+                    onAction="#reinitialiser"/>
+
+        </HBox>
+
+    </bottom>
+
+</BorderPane>

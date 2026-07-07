@@ -44,7 +44,7 @@ To launch the application locally during development:
 
 ```bash
 # On Windows
-gradlew.bat run
+.\gradlew.bat run
 ```
 This will compile the project and launch the JavaFX window.
 
